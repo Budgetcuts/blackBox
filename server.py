@@ -1,7 +1,7 @@
 import socket
 import sys
 
-ip = 'localhost' #''localhost' # change
+ip = '149.125.140.242' #''localhost' # change
 
 # Create a TCP/IP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
