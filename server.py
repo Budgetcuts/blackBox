@@ -1,38 +1,48 @@
 import socket
 import sys
 
-ip = '149.125.140.242' #''localhost' # change
+class server:
+   def __init__(self):
+      self.ip = 'localhost' #'149.125.140.242' #''localhost' # change
 
-# Create a TCP/IP socket
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+   def update_ip(self, new_ip):
+      self.ip = new_ip
 
-# Bind the socket to the port
-server_address = (ip, 10000)
-print('starting up on %s port %s' % server_address)
-sock.bind(server_address)
+   def server_start(self):
+      # Create a TCP/IP socket
+      sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Listen for incoming connections
-sock.listen(1)
+      # Bind the socket to the port
+      server_address = (self.ip, 10000)
+      print('starting up on %s port %s' % server_address)
+      sock.bind(server_address)
 
-while True:
-   # Wait for a connection
-   print('waiting for a connection')
-   connection, client_address = sock.accept()
+      # Listen for incoming connections
+      sock.listen(1)
 
-   try:
-      print('connection from', client_address)
-
-      # Receive the data in small chunks and retransmit it
       while True:
-         data = connection.recv(16)
-         print('received "%s"' % data)
-         if data:
-            print('sending data back to the client')
-            connection.sendall(data)
-         else:
-            print('no more data from', client_address)
-            break
+      # Wait for a connection
+         print('waiting for a connection')
+         connection, client_address = sock.accept()
 
-   finally:
-      # Clean up the connection
-      connection.close()
+         try:
+            print('connection from', client_address)
+
+            # Receive the data in small chunks and retransmit it
+            while True:
+               data = connection.recv(16)
+               print('received "%s"' % data)
+               if data:
+                  print('sending data back to the client')
+                  connection.sendall(data)
+               else:
+                  print('no more data from', client_address)
+                  break
+
+         finally:
+            # Clean up the connection
+            connection.close()
+
+s = server()
+s.update_ip('149.125.140.242')
+s.server_start()
