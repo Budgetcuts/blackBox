@@ -59,7 +59,7 @@ class server:
 def recombine_msg(msg):
    out = ""
    for m in msg:
-      out += m[2:len(m)-1]
+      out += str(m[2:len(m)-1])
    return out
 
 s = server()
