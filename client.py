@@ -19,9 +19,10 @@ class client:
         sock.connect(server_address)
 
         try:
-            input_message = input("Send: ")
+            input_message = str(input("Send: "))
             # Send data
-            message = (b'%s', input_message)
+            message = input_message.encode()
+            print("TYPE: ",type(message))
             print('sending "%s"' % message)
             sock.sendall(message)
 
