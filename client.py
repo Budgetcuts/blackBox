@@ -1,17 +1,7 @@
-import socket
+import socket 
 import sys
-
-<<<<<<< HEAD
-class Client():
-   def __init__(self,Address=('149.125.140.242',5000)):
-      self.s = socket.socket()
-      self.s.connect(Address)
-=======
-# Create a TCP/IP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
->>>>>>> 35f686e35b090b5748ad4c8e136ccf4cb1ee6a89
-
-ip = 'localhost' # change to yours
+ip = '149.125.140.242' # change to yours
 
 # Connect the socket to the port where the server is listening
 server_address = (ip, 10000)
