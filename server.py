@@ -1,9 +1,12 @@
 import socket
 import sys
+from requests import get
+
+server_ip = get('https://api.ipify.org').text
 
 class server:
    def __init__(self):
-      self.ip = 'localhost' #'149.125.140.242' #''localhost' # change
+      self.ip = 'localhost'
 
    def update_ip(self, new_ip):
       self.ip = new_ip
@@ -44,5 +47,5 @@ class server:
             connection.close()
 
 s = server()
-s.update_ip('149.125.140.242')
+s.update_ip(server_ip)
 s.server_start()
