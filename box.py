@@ -17,7 +17,7 @@ def partition(coinValue, pAvg, systemNumber, totalProcess):
 
 
 def main():
-    t = gui.TestApp()
+    t = gui.Gui()
     t.run()
     c = coin.Coin(1,1,1)
     c.string()
