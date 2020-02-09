@@ -4,12 +4,6 @@ import ledger
 import peer
 import gui
 
-from kivy.app import App
-from kivy.uix.button import Button
-from kivy.uix.popup import Popup
-from kivy.uix.textinput import TextInput
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
 
 
 def partition(coinValue, pAvg, systemNumber, totalProcess):
@@ -25,11 +19,12 @@ def partition(coinValue, pAvg, systemNumber, totalProcess):
 
 def update():
         myCoin = coin.Coin(1,1,1)
-        #t = gui.Gui()
-        #t.run()
-        btn = Button(text ='Switch Screen')
-        #btn.bind(on_release=)
-        btn2 = Button(text ='hi')
+        t = gui.Gui()
+        t.window()
+        
+        #btn = Button(text ='Switch Screen')
+        #x`btn.bind(on_release=)
+        #btn2 = Button(text ='hi')
        
 
 

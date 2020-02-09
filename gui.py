@@ -1,10 +1,39 @@
-from kivy.app import App
+'''from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
-from kivy.graphics import Color, Ellipse, Line
+from kivy.graphics import Color, Ellipse, Line'''
+from tkinter import *
+from tkinter.ttk import *
+import tkinter as tk
 
 
-class Gui(App):
+
+class Gui:
+    def __init__(self):
+        self.x = 5
+    def window(self):
+        window = Tk()
+ 
+        window.title("GitCoin")
+        window.geometry("1000x700")
+ 
+        lbl = Label(window, text="GitCoins:", font=("Arial Bold", 16))
+        lbl2 = Label(window, text="Average Power", font=("Arial Bold", 16))
+        lbl3 = Label(window, text="Number of Machines on the Network", font=("Arial Bold", 16))
+        lbl4 = Label(window, text="Personal Computer power", font=("Arial Bold", 16))
+ 
+        lbl.grid(column=0, row=0)
+        lbl2.grid(column=8, row=0)
+        lbl3.grid(column=0, row=10)
+        lbl4.grid(column=8, row=10)
+ 
+        window.mainloop()
+        
+
+
+
+
+'''class Gui(App):
     def build(self):
 
         self.btn = Button(text ='Switch Screen')
@@ -17,7 +46,7 @@ class Gui(App):
         return self.btn
 
 
-        '''
+        
 
     def on_touch_down(self, touch):
         color = (random(), 1, 1)
