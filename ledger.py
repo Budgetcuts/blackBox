@@ -45,10 +45,14 @@ class ledger:
 
 # User Class
 class user:
-    def __init__(self, name, power):
+    def __init__(self, name, power, ip):
         self.power = power
         self.name = name
         self.id = -1
+        self.ip = ip
+
+    def get_ip(self):
+        return self.ip
 
     def set_id(self, new_id):
         self.id = new_id
