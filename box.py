@@ -2,6 +2,7 @@ import numpy as np
 import coin
 import ledger
 import peer
+import gui
 
 def partition(coinValue, pAvg, systemNumber, totalProcess):
     uProcess = totalProcess/1.1
@@ -16,7 +17,8 @@ def partition(coinValue, pAvg, systemNumber, totalProcess):
 
 
 def main():
-    print("Jonah is a coward")
+    t = gui.TestApp()
+    t.run()
     c = coin.Coin(1,1,1)
     c.string()
    
