@@ -1,6 +1,26 @@
 # Ledger Class
+import json
+
 class ledger:
     def __init__(self):
+        self.user_list = []
+        self.id_list = []
+        self.avg_user_power = 0.0
+        self.number_users = 0
+        self.max_power = 0
+
+    def fill(self,avg_user_power,id_list,max_power,user_list):
+        self.user_list = user_list
+        self.id_list = id_list
+        self.avg_user_power = avg_user_power
+        self.max_power = max_power
+
+        num = 0
+        for u in self.user_list:
+            num += 1
+        self.number_users = num
+
+    def clean(self):
         self.user_list = []
         self.id_list = []
         self.avg_user_power = 0.0
@@ -37,6 +57,12 @@ class ledger:
             self.user_list.append(new_user)
         return True
 
+    def get_num_users(self):
+        num = 0
+        for u in self.user_list:
+            num += 1
+        return num
+
     def add_user_list(self, users):
         for u in users:
             self.add_user(u)
@@ -50,6 +76,14 @@ class ledger:
 
     def gen_id(self):
         rand_id = 255
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+    def __repr__(self):
+        for u in self.user_list:
+            print(u)
 
 # User Class
 class user:
@@ -80,6 +114,8 @@ class user:
     def __repr__(self):
         return "["+str(self.id)+"] "+self.name+": power = "+str(self.power)
 
+
+
 # Test Method
 def test_ledger():
     test_user1 = user("Bob",1.0,"0.0.0.0",3)
@@ -93,5 +129,7 @@ def test_ledger():
 
     print("USERS: ",ledger1.get_user_list())
     print("IDs: ",ledger1.get_id_list())
+
+    print(ledger1.toJSON())
 
 #test_ledger()
