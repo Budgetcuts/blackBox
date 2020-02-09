@@ -23,28 +23,44 @@ class server:
       # Listen for incoming connections
       sock.listen(1)
 
+      msg = []
+
       while True:
       # Wait for a connection
-         print('waiting for a connection')
+         print('?? waiting for a connection')
          connection, client_address = sock.accept()
 
          try:
-            print('connection from', client_address)
+            print(':: connection from', client_address)
 
             # Receive the data in small chunks and retransmit it
             while True:
-               data = connection.recv(16)
-               print('received "%s"' % data)
-               if data:
-                  print('sending data back to the client')
-                  connection.sendall(data)
-               else:
-                  print('no more data from', client_address)
+               full_msg = recombine_msg(msg)
+               print("MSG: ", full_msg)
+
+               if "<END>" in full_msg:
+                  print("!! client terminated connection")
                   break
 
+               data = connection.recv(16)
+               msg.append(data)
+               print(':: received "%s"' % data)
+               if data:
+                  print(':: sending data back to the client')
+                  connection.sendall(data)
+               else:
+                  print('!! no more data from', client_address)
+                  break
          finally:
             # Clean up the connection
             connection.close()
+            print('!! closed connection')
+
+def recombine_msg(msg):
+   out = ""
+   for m in msg:
+      out += m[2:len(m)-1]
+   return out
 
 s = server()
 s.update_ip(server_ip)

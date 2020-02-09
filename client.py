@@ -15,15 +15,15 @@ class client:
 
         # Connect the socket to the port where the server is listening
         server_address = (ip, 10000)
-        print('connecting to %s port %s' % server_address)
+        print('?? connecting to %s port %s' % server_address)
         sock.connect(server_address)
 
         try:
             input_message = str(input("Send: "))
             # Send data
             message = input_message.encode()
-            print("TYPE: ",type(message))
-            print('sending "%s"' % message)
+            #print("TYPE: ",type(message))
+            print(':: sending "%s"' % message)
             sock.sendall(message)
 
             # Look for the response
@@ -33,11 +33,12 @@ class client:
             while amount_received < amount_expected:
                 data = sock.recv(16)
                 amount_received += len(data)
-                print('received "%s"' % data)
+                print(':: received "%s"' % data)
 
         finally:
-            print('closing socket')
+            print('!! closing socket')
             sock.close()
 
+server_ip = '149.125.140.242'
 c = client()
-c.connect_to('149.125.140.242')
+c.connect_to(server_ip)
