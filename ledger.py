@@ -16,18 +16,26 @@ class ledger:
         return self.id_list
 
     def add_user(self, new_user):
-        #print("ADDING: ",new_user.get_name())
-        id_list = self.get_id_list()
-        next_id = 0
-        if len(id_list) != 0:
-            next_id = max(id_list)+1
-        if next_id == 256:
-            print("No more available IDs")
-        else:
-            #print("\tID: ",next_id)
+        new_user_id = new_user.get_id()
+        if new_user_id == -1 and not(new_user_id in self.id_list):
+            #print("ADDING: ",new_user.get_name())
+            id_list = self.get_id_list()
+            next_id = 0
+            for i in range(256):
+                if not(i in id_list):
+                    next_id = i
+                    break
+            if next_id == 256:
+                print("No more available IDs")
+                return False
             new_user.set_id(next_id)
             self.id_list.append(next_id)
+        else:
+            self.id_list.append(new_user_id)
+
+        if(new_user.get_id()!=256):
             self.user_list.append(new_user)
+        return True
 
     def add_user_list(self, users):
         for u in users:
@@ -45,11 +53,14 @@ class ledger:
 
 # User Class
 class user:
-    def __init__(self, name, power, ip):
+    def __init__(self, name="Null", power=0, ip="0.0.0.0", id=-1):
         self.power = power
         self.name = name
         self.id = -1
         self.ip = ip
+
+        if 'id' in locals():
+            self.id = id
 
     def get_ip(self):
         return self.ip
@@ -71,13 +82,16 @@ class user:
 
 # Test Method
 def test_ledger():
-    test_user1 = user("Bob",1.0)
+    test_user1 = user("Bob",1.0,"0.0.0.0",3)
     test_user2 = user("Alice",3.0)
     test_user3 = user("Bill",2.0)
     test_user4 = user("Amanda",8.0)
+    test_user5 = user("Gerard",2.0)
 
     ledger1 = ledger()
-    ledger1.add_user_list([test_user1, test_user2, test_user3, test_user4])
+    ledger1.add_user_list([test_user1, test_user2, test_user3, test_user4, test_user5])
 
     print("USERS: ",ledger1.get_user_list())
     print("IDs: ",ledger1.get_id_list())
+
+#test_ledger()
