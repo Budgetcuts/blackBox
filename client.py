@@ -1,11 +1,30 @@
-#!/usr/bin/python           # This is client.py file
+import socket
+import sys
 
-import socket               # Import socket module
+# Create a TCP/IP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-s = socket.socket()         # Create a socket object
-host = socket.gethostname() # Get local machine name
-port = 12345                # Reserve a port for your service.
+# Connect the socket to the port where the server is listening
+server_address = ('localhost', 10000)
+print('connecting to %s port %s' % server_address)
+sock.connect(server_address)
 
-s.connect((host, port))
-print(s.recv(1024))
-s.close()                     # Close the socket when done
+try:
+
+    # Send data
+    message = (b'This is the message.  It will be repeated.')
+    print('sending "%s"' % message)
+    sock.sendall(message)
+
+    # Look for the response
+    amount_received = 0
+    amount_expected = len(message)
+
+    while amount_received < amount_expected:
+        data = sock.recv(16)
+        amount_received += len(data)
+        print('received "%s"' % data)
+
+finally:
+    print('closing socket')
+    sock.close()
