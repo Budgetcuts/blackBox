@@ -8,12 +8,14 @@ class ledger:
         self.avg_user_power = 0.0
         self.number_users = 0
         self.max_power = 0
+        self.transactions = []
 
-    def fill(self,avg_user_power,id_list,max_power,user_list):
+    def fill(self,avg_user_power,id_list,max_power,user_list,transactions):
         self.user_list = user_list
         self.id_list = id_list
         self.avg_user_power = avg_user_power
         self.max_power = max_power
+        self.transactions = transactions
 
         num = 0
         for u in self.user_list:
@@ -26,6 +28,14 @@ class ledger:
         self.avg_user_power = 0.0
         self.number_users = 0
         self.max_power = 0
+        self.transactions = []
+
+    def add_transaction(self,user_server,user_client):
+        transaction = user_server.name + "->" + user_client.name
+        self.transactions.append(transaction)
+
+    def add_transaction(self,transaction):
+        self.transactions.append(transaction)
 
     def fill_id_list(self):
         id_list = [(u.get_id() for u in self.user_list)]
@@ -82,8 +92,17 @@ class ledger:
                           sort_keys=True, indent=4)
 
     def __repr__(self):
+        print(
+        "avg pow: ",str(self.avg_user_power),
+        "num users: ",str(self.number_users),
+        "max power: ",str(self.max_power),
+        "transactions: ",str(self.transactions)
+        )
         for u in self.user_list:
             print(u)
+
+
+
 
 # User Class
 class user:
