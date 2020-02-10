@@ -1,0 +1,45 @@
+{
+    "avg_user_power": 0.0,
+    "id_list": [
+        3,
+        0,
+        1,
+        2,
+        4
+    ],
+    "max_power": 0,
+    "number_users": 0,
+    "transactions": [],
+    "user_list": [
+        {
+            "id": 3,
+            "ip": "0.0.0.0",
+            "name": "Bob",
+            "power": 1.0
+        },
+        {
+            "id": 0,
+            "ip": "0.0.0.0",
+            "name": "Alice",
+            "power": 3.0
+        },
+        {
+            "id": 1,
+            "ip": "0.0.0.0",
+            "name": "Bill",
+            "power": 2.0
+        },
+        {
+            "id": 2,
+            "ip": "0.0.0.0",
+            "name": "Amanda",
+            "power": 8.0
+        },
+        {
+            "id": 4,
+            "ip": "0.0.0.0",
+            "name": "Gerard",
+            "power": 2.0
+        }
+    ]
+}
