@@ -34,7 +34,7 @@ class ledger:
         transaction = user_server.name + "->" + user_client.name
         self.transactions.append(transaction)
 
-    def add_transaction(self,transaction):
+    def add_str_transaction(self,transaction):
         self.transactions.append(transaction)
 
     def fill_id_list(self):
@@ -92,14 +92,15 @@ class ledger:
                           sort_keys=True, indent=4)
 
     def __repr__(self):
-        print(
-        "avg pow: ",str(self.avg_user_power),
-        "num users: ",str(self.number_users),
-        "max power: ",str(self.max_power),
-        "transactions: ",str(self.transactions)
-        )
+        out = "avg pow: " + str(self.avg_user_power) + "\n"
+        out += "num users: " + str(self.number_users) + "\n"
+        out += "max power: " + str(self.max_power) + "\n"
+        for t in self.transactions:
+            out += ":: " + str(t) + "\n"
+        #out += "transactions: " + str(self.transactions)
         for u in self.user_list:
-            print(u)
+            out += str(u)
+        return out
 
 
 

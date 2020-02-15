@@ -56,5 +56,6 @@ def test():
     write_json(ledger1)
 
     ledger2 = json_to_ledger()
-
-test()
+    print(ledger1)
+    #print(ledger2)
+#test()
