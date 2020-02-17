@@ -2,7 +2,15 @@ import socket
 import sys
 from requests import get
 
-server_ip = get('https://api.ipify.org').text
+is_server_open = False
+
+def get_ip():
+   return get('https://api.ipify.org').text
+
+def server_status():
+   return is_server_open
+
+server_ip = get_ip()
 
 class server:
    def __init__(self):
@@ -62,6 +70,8 @@ def recombine_msg(msg):
       out += str(m[2:len(m)-1])
    return out
 
-s = server()
-s.update_ip(server_ip)
-s.server_start()
+def start():
+   s = server()
+   s.update_ip(server_ip)
+   is_server_open = True
+   #s.server_start() # Commented out for testing gui

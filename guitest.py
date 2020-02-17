@@ -2,6 +2,7 @@ import tkinter as tk
 import ledger as lg
 import ledger_manager as lm
 import random as rand
+import server
 
 ledger = lg.ledger()
 ledger.clean()
@@ -30,6 +31,17 @@ class Application(tk.Frame):
         self.clr_ledger["command"] = self.clear_ledger
         self.clr_ledger.pack(side="top")
 
+        st_server = tk.Button(root, text="Start Server", command=self.start_server)
+        st_server.pack(side="left")
+
+        jn_server = tk.Button(root, text="Join Server", command=self.join_server)
+        jn_server.pack(side="right")
+
+        self.join_server = tk.Button(self)
+        self.join_server["text"] = "Join Server"
+        self.join_server["command"] = self.join_server
+        self.join_server.pack(side="right")
+
         self.quit = tk.Button(self, text="QUIT", fg="red",
                               command=self.master.destroy)
         self.quit.pack(side="bottom")
@@ -46,7 +58,25 @@ class Application(tk.Frame):
         ledger.clean()
         lm.write_json(ledger)
 
+    def join_server(self):
+        #text.insert(tk.INSERT, "Hello.....")
+        #text.insert(tk.END, "Bye Bye.....")
+        text.pack()
+
+    def start_server(self):
+        if(server.is_server_open == True):
+            text.insert(tk.INSERT, "Server Already Open!\n")
+        else:
+            text.insert(tk.INSERT, "Server Opened On: %s\n" % server.get_ip())
+            server.start()
+        text.pack()
+        #server.start()
+
+
 root = tk.Tk()
+
+text = tk.Text(root)
+text.pack()
 
 frame1 = tk.Frame(root, width=400, height=100)
 
