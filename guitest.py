@@ -37,11 +37,6 @@ class Application(tk.Frame):
         jn_server = tk.Button(root, text="Join Server", command=self.join_server)
         jn_server.pack(side="right")
 
-        self.join_server = tk.Button(self)
-        self.join_server["text"] = "Join Server"
-        self.join_server["command"] = self.join_server
-        self.join_server.pack(side="right")
-
         self.quit = tk.Button(self, text="QUIT", fg="red",
                               command=self.master.destroy)
         self.quit.pack(side="bottom")
