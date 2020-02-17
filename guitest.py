@@ -44,6 +44,7 @@ class Application(tk.Frame):
     def clear_ledger(self):
         print("cleaned ledger")
         ledger.clean()
+        lm.write_json(ledger)
 
 root = tk.Tk()
 

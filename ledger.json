@@ -1,17 +1,8 @@
 {
     "avg_user_power": 0.0,
-    "id_list": [
-        0
-    ],
+    "id_list": [],
     "max_power": 0,
     "number_users": 0,
     "transactions": [],
-    "user_list": [
-        {
-            "id": 0,
-            "ip": "0.0.0.1",
-            "name": "Marty",
-            "power": 2.0
-        }
-    ]
+    "user_list": []
 }
