@@ -71,7 +71,8 @@ def recombine_msg(msg):
    return out
 
 def start():
+   print("STARTED SERVER FILE!")
    s = server()
    s.update_ip(server_ip)
    is_server_open = True
-   #s.server_start() # Commented out for testing gui
+   s.server_start() # Commented out for testing gui
